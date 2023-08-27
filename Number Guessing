@@ -1,0 +1,78 @@
+package sample1;
+	import java.util.Scanner;
+	import java.util.Random;
+
+public class GuessTheNumber {
+	
+
+	  public static final int MIN = 1;
+	  public static final int MAX = 100;
+	  public static final int ATTEMPTS = 10;
+
+	  public static Scanner scanner = new Scanner(System.in);
+
+	  public static Random random = new Random();
+
+	  public static void main(String[] args) {
+
+	    int number; 
+	    int guess; 
+	    int round; 
+	    int score; 
+	    boolean playAgain; 
+
+	    round = 1;
+	    score = 0;
+
+	    System.out.println("Welcome to Guess The Number!");
+	    System.out.println("I will generate a random number between " + MIN + " and " + MAX + ".");
+	    System.out.println("You have " + ATTEMPTS + " attempts to guess it.");
+	    System.out.println("Let's begin!");
+
+	    do {
+
+	      number = random.nextInt(MAX - MIN + 1) + MIN;
+
+	      System.out.println("\nRound " + round + ":");
+
+	      for (int i = 1; i <= ATTEMPTS; i++) {
+
+	        System.out.print("Enter your guess: ");
+	        guess = scanner.nextInt();
+
+	        if (guess == number) {
+	          System.out.println("You got it! The number was " + number + ".");
+	          break;
+	        } else if (guess < number) {
+	          System.out.println("Your guess is too low.");
+	        } else {
+	          System.out.println("Your guess is too high.");
+	        }
+
+	        if (i == ATTEMPTS) {
+	          System.out.println("Sorry, you have no more attempts left. The number was " + number + ".");
+	        }
+	      
+
+	      score += ATTEMPTS - i + 1;
+	      }
+	      System.out.println("Your score is: " + score);
+
+	      System.out.print("Do you want to play again? (y/n): ");
+	      char response = scanner.next().charAt(0);
+
+	      playAgain = (response == 'y' || response == 'Y');
+
+	      round++;
+
+	    } while (playAgain); 
+
+	    System.out.println("\nThank you for playing Guess The Number! Goodbye!");
+	    
+	  } 
+
+	} 
+
+
+
+
